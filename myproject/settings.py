@@ -11,14 +11,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-# ✅ Load environment variables
-load_dotenv()
+# # ✅ Load environment variables
+# load_dotenv()
 
-# ✅ Securely load Hugging Face API credentials
-HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
-HUGGINGFACE_API_URL = os.getenv("HUGGINGFACE_API_URL")
+# # ✅ Securely load Hugging Face API credentials
+# HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
+# HUGGINGFACE_API_URL = os.getenv("HUGGINGFACE_API_URL")
 
 
 
@@ -74,6 +74,16 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+}
+
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  #FE
